@@ -1,101 +1,97 @@
+"use client"
 import Image from "next/image";
+import backgroundImg from "../public/mosh.jpg"
+import LogoNav from "../public/logoBgWhite.jpg"
+import * as React from "react"
+import { DropdownMenuCheckboxItemProps } from "@radix-ui/react-dropdown-menu"
+
+import { Button } from "@/components/ui/button"
+import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { IoMenu } from "react-icons/io5";
+import { IoMdDownload } from "react-icons/io";
+
+
+
+type Checked = DropdownMenuCheckboxItemProps["checked"]
 
 export default function Home() {
+  const [showStatusBar, setShowStatusBar] = React.useState<Checked>(true)
+  const [showActivityBar, setShowActivityBar] = React.useState<Checked>(false)
+  const [showPanel, setShowPanel] = React.useState<Checked>(false)
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="">
+      <div className="w-full">
+        <div className="flex flex-col py-10 justify-between main-bg ">
+          <div className="flex w-full items-center justify-between px-24 text-white">
+            <div><Image className="w-full" height={56} src={LogoNav} alt="" /></div>
+            <div className="">Главное</div>
+            <div>О Компании</div>
+            <div>Каталог</div>
+            <div>+998(95)-089-99-44</div>
+            <div>albois200@mail.ru</div>
+            <div><DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <IoMenu color="white" size={40} />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-56">
+                <DropdownMenuCheckboxItem
+                  checked={showStatusBar}
+                  onCheckedChange={setShowStatusBar}
+                >
+                  RUS
+                </DropdownMenuCheckboxItem>
+                <DropdownMenuCheckboxItem
+                  checked={showStatusBar}
+                  onCheckedChange={setShowPanel}
+                >
+                  UZB
+                </DropdownMenuCheckboxItem>
+              </DropdownMenuContent>
+            </DropdownMenu></div>
+          </div>
+          <div className="flex justify-between">
+            <div className="pl-20"><p className="text-3xl font-bold">Зелённые бобы</p> <span className="font-bold">Мы поставляем высококачественные и чистые бобовые продукты</span></div>
+            <div className=" rounded bg-opacity-10">
+              <div className="flex items-center gap-5 w-full px-2 py-2 rounded-l-full bg-white bg-opacity-40">
+                <div className="rounded-full bg-green-800 bg-opacity-90 p-2"><IoMdDownload size={20} /></div>
+                <div>Загрузите каталог</div>
+              </div>
+              <div></div>
+            </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          </div>
+          {/* <Image className="w-full" src={backgroundImg} alt="background" /> */}
+
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+
+      </div>
+      <div className="flex ">
+        <div className="about-bg px-20">
+          <div className="text-center text-6xl mt-20 w-full">
+            <span>Uzbeans agricultural company</span>
+          </div>
+          <div className="flex mt-20 gap-20">
+
+            <div className="w-full">
+              <p className="text-5xl">О компании Uzbeans</p>
+              <p className="mt-10 text-2xl">
+                <span className="font-bold">Добро пожаловать в Uzbeans</span> — молодую и амбициозную компанию, основанную в 2024 году в городе Чуст, Наманганской области, Узбекистан. Мы специализируемся на переработке, очистке и <br></br><span className="font-bold">упаковке высококачественных бобовых и агропродуктов</span>, создавая продукцию, которая объединяет натуральность и свежесть, ценимые на мировом рынке.
+              </p>
+            </div>
+
+            <div className="w-full">jh</div>
+          </div>
+        </div>
+      </div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div >
   );
 }
