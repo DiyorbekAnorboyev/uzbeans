@@ -31,7 +31,7 @@ body {
 .about-bg {
   /* background-image: url("../public/beans.jpg"); */
   background-color:rgb(100, 206, 96);
-  height: 100vh;
+  height: 100%;
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover;

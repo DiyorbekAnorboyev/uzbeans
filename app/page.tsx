@@ -2,6 +2,8 @@
 import Image from "next/image";
 import backgroundImg from "../public/mosh.jpg"
 import LogoNav from "../public/logoBgWhite.jpg"
+import traktorImg from "../public/traktor.png";
+import beansImg from "../public/beansImg.png";
 import * as React from "react"
 import { DropdownMenuCheckboxItemProps } from "@radix-ui/react-dropdown-menu"
 
@@ -82,9 +84,38 @@ export default function Home() {
               <p className="mt-10 text-2xl">
                 <span className="font-bold">Добро пожаловать в Uzbeans</span> — молодую и амбициозную компанию, основанную в 2024 году в городе Чуст, Наманганской области, Узбекистан. Мы специализируемся на переработке, очистке и <br></br><span className="font-bold">упаковке высококачественных бобовых и агропродуктов</span>, создавая продукцию, которая объединяет натуральность и свежесть, ценимые на мировом рынке.
               </p>
+              <div className="mt-10 text-2xl">
+                <p>
+                  <span className="font-bold">Наш секрет успеха</span> — это сочетание передовых технологий и глубокого понимания потребностей наших клиентов. Мы отбираем лучшие бобовые культуры со всех уголков Узбекистана, чтобы предложить вам продукцию, соответствующую самым строгим международным стандартам качества. Благодаря многоуровневому контролю на каждом этапе производства, Uzbeans гарантирует чистоту, безопасность и сохранение всех полезных свойств продукции.
+                </p>
+              </div>
+              <div className="mt-10">
+                <Image className="w-full" src={traktorImg} alt="traktor" />
+              </div>
             </div>
 
-            <div className="w-full">jh</div>
+            <div className="w-full">
+              <div>
+                <Image className="w-full" src={beansImg} alt="traktor" />
+              </div>
+              <div>
+                <p className="mt-32 text-2xl">Мыгордимсятем,чтосоздаемустойчивыеи
+                  взаимовыгодныепартнерстваснашимиклиентами
+                  ипоставщиками.Нашацель—непростопоставлять
+                  продукты,астроитьдолгосрочныеотношения,
+                  основанныенадоверииикачестве.Мыстремимся
+                  выйтинановыерынкиирасширятьгеографию
+                  нашихпоставок,чтобысделатьузбекскую
+                  продукциюизвестнойивостребованнойвовсем
+                  мире.</p>
+              </div>
+              <div className="w-full">
+                <p className="mt-20 text-2xl font-bold">Uzbeans—этовашнадежныйпартнервмире
+                  качественныхиэкологическичистых
+                  агропродуктов,накоторыхможноположиться.</p>
+              </div>
+
+            </div>
           </div>
         </div>
       </div>
