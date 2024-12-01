@@ -42,14 +42,14 @@ export default function Home() {
               </DropdownMenuTrigger>
               <DropdownMenuContent className="w-56">
                 <DropdownMenuCheckboxItem
-                  checked={showStatusBar}
-                  onCheckedChange={setShowStatusBar}
+                  // checked={showStatusBar}
+                  // onCheckedChange={setShowStatusBar}
                 >
                   RUS
                 </DropdownMenuCheckboxItem>
                 <DropdownMenuCheckboxItem
-                  checked={showStatusBar}
-                  onCheckedChange={setShowPanel}
+                  // checked={showStatusBar}
+                  // onCheckedChange={setShowPanel}
                 >
                   UZB
                 </DropdownMenuCheckboxItem>
