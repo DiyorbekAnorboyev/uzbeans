@@ -6,6 +6,8 @@ import traktorImg from "../public/traktor.png";
 import beansImg from "../public/beansImg.png";
 import * as React from "react"
 import { DropdownMenuCheckboxItemProps } from "@radix-ui/react-dropdown-menu"
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
 
 import { Button } from "@/components/ui/button"
 import {
@@ -21,12 +23,18 @@ import { IoMdDownload } from "react-icons/io";
 
 type Checked = DropdownMenuCheckboxItemProps["checked"]
 
+
 export default function Home() {
   const [showStatusBar, setShowStatusBar] = React.useState<Checked>(true)
   const [showActivityBar, setShowActivityBar] = React.useState<Checked>(false)
   const [showPanel, setShowPanel] = React.useState<Checked>(false)
+  const center: number[] = [41.3140616, 69.2952844];
+
+
+
   return (
     <div className="">
+      {/* main */}
       <div className="w-full">
         <div className="flex flex-col py-10 justify-between main-bg ">
           <div className="flex w-full items-center justify-between px-24 text-white">
@@ -42,14 +50,14 @@ export default function Home() {
               </DropdownMenuTrigger>
               <DropdownMenuContent className="w-56">
                 <DropdownMenuCheckboxItem
-                  // checked={showStatusBar}
-                  // onCheckedChange={setShowStatusBar}
+                // checked={showStatusBar}
+                // onCheckedChange={setShowStatusBar}
                 >
                   RUS
                 </DropdownMenuCheckboxItem>
                 <DropdownMenuCheckboxItem
-                  // checked={showStatusBar}
-                  // onCheckedChange={setShowPanel}
+                // checked={showStatusBar}
+                // onCheckedChange={setShowPanel}
                 >
                   UZB
                 </DropdownMenuCheckboxItem>
@@ -72,6 +80,7 @@ export default function Home() {
         </div>
 
       </div>
+      {/* About */}
       <div className="flex ">
         <div className="about-bg px-20">
           <div className="text-center text-6xl mt-20 w-full">
@@ -99,28 +108,91 @@ export default function Home() {
                 <Image className="w-full" src={beansImg} alt="traktor" />
               </div>
               <div>
-                <p className="mt-32 text-2xl">Мыгордимсятем,чтосоздаемустойчивыеи
-                  взаимовыгодныепартнерстваснашимиклиентами
-                  ипоставщиками.Нашацель—непростопоставлять
-                  продукты,астроитьдолгосрочныеотношения,
-                  основанныенадоверииикачестве.Мыстремимся
-                  выйтинановыерынкиирасширятьгеографию
-                  нашихпоставок,чтобысделатьузбекскую
-                  продукциюизвестнойивостребованнойвовсем
-                  мире.</p>
+                <p className="mt-32 text-2xl">Мы гордимся тем, что создаём устойчивые и взаимовыгодные партнёрства с нашими клиентами и поставщиками. Наша цель — не просто поставлять продукты, а строить долгосрочные отношения, основанные на доверии и качестве.
+
+                  Мы стремимся выходить на новые рынки и расширять географию наших поставок, чтобы сделать узбекскую продукцию известной и востребованной во всём мире.</p>
               </div>
               <div className="w-full">
-                <p className="mt-20 text-2xl font-bold">Uzbeans—этовашнадежныйпартнервмире
-                  качественныхиэкологическичистых
-                  агропродуктов,накоторыхможноположиться.</p>
+                <p className="mt-20 text-2xl font-bold">Uzbeans — ваш надёжный партнёр в мире качественных и экологически чистых агропродуктов, которому можно доверять.</p>
               </div>
 
             </div>
           </div>
         </div>
       </div>
-      <div></div>
-      <div></div>
+      {/* Products */}
+      <div className="bg-white h-screen ">
+        <div className=" h-screen relative">
+          <div  >
+            <p className="text-4xl text-center w-full mt-20 absolute bg-green-900  p-2">Наши продукты</p>
+          </div>
+          <div className="mt-40 px-20 grid grid-cols-3 gap-4 absolute w-full">
+            {/* 1-karta: ikkita ustunni egallaydi */}
+            <div className="col-span-2 bg-slate-400 relative rounded-lg shadow-lg overflow-hidden">
+              <Image className="w-full h-56 object-cover" src={beansImg} alt="beans" />
+              {/* Pastki matn va gradient */}
+              <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-green-900 via-transparent to-transparent">
+                <p className="text-white text-lg font-bold px-4 pt-6">Зелёный мунг (маш)</p>
+              </div>
+            </div>
+
+            {/* 2-karta */}
+            <div className="bg-slate-600 relative rounded-lg shadow-lg overflow-hidden">
+              <Image className="w-full h-56 object-cover" src={beansImg} alt="beans" />
+              <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-green-900 via-transparent to-transparent">
+                <p className="text-white text-lg font-bold px-4 pt-6">Красный фасоль
+                </p>
+              </div>
+            </div>
+
+            {/* 3-karta */}
+            <div className="bg-slate-400 relative rounded-lg shadow-lg overflow-hidden">
+              <Image className="w-full h-56 object-cover" src={beansImg} alt="beans" />
+              <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-green-900 via-transparent to-transparent">
+                <p className="text-white text-lg font-bold px-4 pt-6">Арахис</p>
+              </div>
+            </div>
+
+            {/* 4-karta: ikkita ustunni egallaydi */}
+            <div className="col-span-2 bg-slate-600 relative rounded-lg shadow-lg overflow-hidden">
+              <Image className="w-full h-56 object-cover" src={beansImg} alt="beans" />
+              <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-green-900 via-transparent to-transparent">
+                <p className="text-white text-lg font-bold px-4 pt-6">Нут</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="bg-white h-40 w-full">
+          <div className="flex mt-10 absolute w-full justify-center px-20">
+            <button className="bg-green-600 rounded-full text-2xl p-3 px-5">Больше продуктов</button>
+          </div>
+        </div>
+
+      </div>
+      {/* Navigation Map */}
+      <div>
+        <div className="h-screen  ">
+          <div className=" px-20 h-1/2 bg-white">
+            <div className=" ">
+              <p className="  mt-40 text-4xl text-green-900 font-bold">Наше местонахождения</p>
+            </div>
+            <div className="w-full ">
+              <div className="mt-10 bg-white"></div>
+              <MapContainer center={center} zoom={13} style={{ width: '100%', height: '500px' }}>
+                <TileLayer
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+                <Marker position={center}>
+                  <Popup>
+                    A marker at this location.
+                  </Popup>
+                </Marker>
+              </MapContainer>
+            </div>
+          </div>
+          <div className="h-1/2 bg-green-500"></div>
+        </div>
+      </div>
       <div></div>
       <div></div>
     </div >

@@ -36,6 +36,19 @@ body {
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover;
 }
+
+.card {
+  border-radius: 8px; /* Kartaning burchaklarini yumaloqlash */
+  overflow: hidden; /* Tasvirning tashqariga chiqishini oldini olish */
+  box-shadow: 0 20px 50px rgba(7, 66, 2, 0.3) inset; /* Kartaga soya qo'shish */
+  /* position: relative; Pozitsiyani sozlash */
+}
+
+.card img {
+  width: 100%; /* Kartaning kengligiga mos */
+  height: 100%; /* Kartaning balandligiga mos */
+  object-fit: cover; /* Tasvirni sig'dirish */
+}
 @layer base {
   :root {
     --background: 0 0% 100%;
