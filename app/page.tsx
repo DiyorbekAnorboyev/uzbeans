@@ -33,154 +33,207 @@ export default function Home() {
   const [showActivityBar, setShowActivityBar] = React.useState<Checked>(false)
   const [showPanel, setShowPanel] = React.useState<Checked>(false)
   const center: number[] = [41.3140616, 69.2952844];
+  const [isOpen, setIsOpen] = React.useState(false);
 
+  const [displaySize, setDisplaySize] = React.useState(0);
 
+  // Update displaySize when the window is resized
+  React.useEffect(() => {
+    // Function to handle window resizing
+    const handleResize = () => {
+      setDisplaySize(window.innerWidth);
+    };
+
+    // Add event listener when component mounts
+    window.addEventListener('resize', handleResize);
+
+    // Call the handler initially to set the size
+    handleResize();
+
+    // Clean up the event listener when component unmounts
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   return (
     <div className="">
       {/* main */}
       <div className="w-full">
-        <div className="flex flex-col py-10 justify-between main-bg ">
-          <div className="flex w-full items-center justify-between px-24 text-white">
-            <div><Image className="w-full" height={56} src={LogoNav} alt="" /></div>
-            <div className="">Главное</div>
-            <div>О Компании</div>
-            <div>Каталог</div>
-            <div>+998(95)-089-99-44</div>
-            <div>albois200@mail.ru</div>
-            <div><DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <IoMenu color="white" size={40} />
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-56">
-                <DropdownMenuCheckboxItem
-                // checked={showStatusBar}
-                // onCheckedChange={setShowStatusBar}
-                >
-                  RUS
-                </DropdownMenuCheckboxItem>
-                <DropdownMenuCheckboxItem
-                // checked={showStatusBar}
-                // onCheckedChange={setShowPanel}
-                >
-                  UZB
-                </DropdownMenuCheckboxItem>
-              </DropdownMenuContent>
-            </DropdownMenu></div>
-          </div>
-          <div className="flex justify-between">
-            <div className="pl-20"><p className="text-3xl font-bold">Зелённые бобы</p> <span className="font-bold">Мы поставляем высококачественные и чистые бобовые продукты</span></div>
-            <div className=" rounded bg-opacity-10">
-              <div className="flex items-center gap-5 w-full px-2 py-2 rounded-l-full bg-white bg-opacity-40">
-                <div className="rounded-full bg-green-800 bg-opacity-90 p-2"><IoMdDownload size={20} /></div>
-                <div>Загрузите каталог</div>
-              </div>
-              <div></div>
+        <div className="flex flex-col py-10 justify-between main-bg max-sm:py-4 max-sm:w-full">
+          <div className="flex w-full items-center justify-between px-6 sm:px-12 lg:px-24 text-white">
+            {/* Logo */}
+            <div className="flex-shrink-0">
+              <Image className="w-auto h-10 sm:h-12" src={LogoNav} alt="Logo" />
             </div>
 
-          </div>
-          {/* <Image className="w-full" src={backgroundImg} alt="background" /> */}
+            {/* Navigation Links for larger screens */}
+            <div className="hidden sm:flex space-x-4 md:space-x-6">
+              <div>Главное</div>
+              <div>О Компании</div>
+              <div>Каталог</div>
+              <div>+998(95)-089-99-44</div>
+              <div>albois200@mail.ru</div>
+            </div>
 
+            {/* Dropdown Menu for Smaller Screens */}
+            <div>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <IoMenu
+                    color="white"
+                    size={displaySize > 640 ? 40 : 36}
+                    onClick={() => setIsOpen(!isOpen)} // Toggle menu open/close
+                  />
+                </DropdownMenuTrigger>
+                {isOpen && (  // Show dropdown content if menu is open
+                  <DropdownMenuContent className="w-56 bg-green-500">
+                    <div className="flex flex-col space-y-4">
+                      <div className="sm:hidden px-4 py-2">Главное</div>
+                      <div className="sm:hidden px-4 py-2">О Компании</div>
+                      <div className="sm:hidden px-4 py-2">Каталог</div>
+                      <div className="sm:hidden px-4 py-2">+998(95)-089-99-44</div>
+                      <div className="sm:hidden px-4 py-2">albois200@mail.ru</div>
+                      <DropdownMenuCheckboxItem className="px-4 py-2">RUS</DropdownMenuCheckboxItem>
+                      <DropdownMenuCheckboxItem className="px-4 py-2">UZB</DropdownMenuCheckboxItem>
+                    </div>
+                  </DropdownMenuContent>
+                )}
+              </DropdownMenu>
+            </div>
+          </div>
+
+          <div className="flex flex-col md:flex-row justify-between items-center px-6 sm:px-10 md:px-20">
+            {/* Left Text Section */}
+            <div className="md:pl-10 text-center md:text-left">
+              <p className="text-2xl sm:text-3xl font-bold">Зелённые бобы</p>
+              <span className="font-bold text-sm sm:text-base">
+                Мы поставляем высококачественные и чистые бобовые продукты
+              </span>
+            </div>
+
+            {/* Right Download Section */}
+            <div className="mt-6 md:mt-0 flex items-center rounded bg-opacity-10">
+              <div className="flex items-center gap-4 px-4 py-2 rounded-full bg-white bg-opacity-40 sm:rounded-l-full">
+                <div className="rounded-full bg-green-800 bg-opacity-90 p-2">
+                  <IoMdDownload size={20} />
+                </div>
+                <div className="text-sm sm:text-base">Загрузите каталог</div>
+              </div>
+            </div>
+          </div>
         </div>
 
       </div>
       {/* About */}
-      <div className="flex ">
-        <div className="about-bg px-20">
-          <div className="text-center text-6xl mt-20 w-full">
-            <span>Uzbeans agricultural company</span>
-          </div>
-          <div className="flex mt-20 gap-20">
+      <div className="flex flex-col px-6 sm:px-10 md:px-20 about-bg">
+        {/* Title Section */}
+        <div className="text-center text-3xl sm:text-4xl md:text-6xl mt-10 md:mt-20 w-full">
+          <span>Uzbeans agricultural company</span>
+        </div>
 
-            <div className="w-full">
-              <p className="text-5xl">О компании Uzbeans</p>
-              <p className="mt-10 text-2xl">
-                <span className="font-bold">Добро пожаловать в Uzbeans</span> — молодую и амбициозную компанию, основанную в 2024 году в городе Чуст, Наманганской области, Узбекистан. Мы специализируемся на переработке, очистке и <br></br><span className="font-bold">упаковке высококачественных бобовых и агропродуктов</span>, создавая продукцию, которая объединяет натуральность и свежесть, ценимые на мировом рынке.
+        {/* Content Section */}
+        <div className="flex flex-col md:flex-row mt-10 md:mt-20 gap-10 md:gap-20 pb-20">
+          {/* Left Column */}
+          <div className="w-full">
+            <p className="text-2xl sm:text-4xl md:text-5xl">О компании Uzbeans</p>
+            <p className="mt-6 sm:mt-10 text-base sm:text-xl md:text-2xl">
+              <span className="font-bold">Добро пожаловать в Uzbeans</span> — молодую и амбициозную компанию, основанную в 2024 году в городе Чуст, Наманганской области, Узбекистан. Мы специализируемся на переработке, очистке и <br />
+              <span className="font-bold">упаковке высококачественных бобовых и агропродуктов</span>, создавая продукцию, которая объединяет натуральность и свежесть, ценимые на мировом рынке.
+            </p>
+            <div className="mt-6 sm:mt-10 text-base sm:text-xl md:text-2xl">
+              <p>
+                <span className="font-bold">Наш секрет успеха</span> — это сочетание передовых технологий и глубокого понимания потребностей наших клиентов. Мы отбираем лучшие бобовые культуры со всех уголков Узбекистана, чтобы предложить вам продукцию, соответствующую самым строгим международным стандартам качества. Благодаря многоуровневому контролю на каждом этапе производства, Uzbeans гарантирует чистоту, безопасность и сохранение всех полезных свойств продукции.
               </p>
-              <div className="mt-10 text-2xl">
-                <p>
-                  <span className="font-bold">Наш секрет успеха</span> — это сочетание передовых технологий и глубокого понимания потребностей наших клиентов. Мы отбираем лучшие бобовые культуры со всех уголков Узбекистана, чтобы предложить вам продукцию, соответствующую самым строгим международным стандартам качества. Благодаря многоуровневому контролю на каждом этапе производства, Uzbeans гарантирует чистоту, безопасность и сохранение всех полезных свойств продукции.
-                </p>
-              </div>
-              <div className="mt-10">
-                <Image className="w-full" src={traktorImg} alt="traktor" />
-              </div>
             </div>
+            <div className="mt-6 sm:mt-10">
+              <Image className="w-full" src={traktorImg} alt="Tractor" />
+            </div>
+          </div>
 
-            <div className="w-full">
-              <div>
-                <Image className="w-full" src={beansImg} alt="traktor" />
-              </div>
-              <div>
-                <p className="mt-32 text-2xl">Мы гордимся тем, что создаём устойчивые и взаимовыгодные партнёрства с нашими клиентами и поставщиками. Наша цель — не просто поставлять продукты, а строить долгосрочные отношения, основанные на доверии и качестве.
-
-                  Мы стремимся выходить на новые рынки и расширять географию наших поставок, чтобы сделать узбекскую продукцию известной и востребованной во всём мире.</p>
-              </div>
-              <div className="w-full">
-                <p className="mt-20 text-2xl font-bold">Uzbeans — ваш надёжный партнёр в мире качественных и экологически чистых агропродуктов, которому можно доверять.</p>
-              </div>
-
+          {/* Right Column */}
+          <div className="w-full">
+            <div>
+              <Image className="w-full" src={beansImg} alt="Beans" />
+            </div>
+            <div>
+              <p className="mt-10 sm:mt-20 text-base sm:text-xl md:text-2xl">
+                Мы гордимся тем, что создаём устойчивые и взаимовыгодные партнёрства с нашими клиентами и поставщиками. Наша цель — не просто поставлять продукты, а строить долгосрочные отношения, основанные на доверии и качестве.
+                <br />
+                Мы стремимся выходить на новые рынки и расширять географию наших поставок, чтобы сделать узбекскую продукцию известной и востребованной во всём мире.
+              </p>
+            </div>
+            <div className="mt-6 sm:mt-10 text-base sm:text-xl md:text-2xl font-bold ">
+              Uzbeans — ваш надёжный партнёр в мире качественных и экологически чистых агропродуктов, которому можно доверять.
             </div>
           </div>
         </div>
       </div>
+
       {/* Products */}
-      <div className="bg-white h-screen ">
-        <div className=" h-screen relative">
-          <div  >
-            <p className="text-4xl text-center w-full mt-20 absolute bg-green-900  p-2">Наши продукты</p>
+      <div className="bg-white min-h-screen pb-20">
+        <div className="relative min-h-screen">
+          {/* Title */}
+          <div>
+            <p className="text-2xl sm:text-3xl md:text-4xl text-center w-full bg-green-900 text-white p-2">
+              Наши продукты
+            </p>
           </div>
-          <div className="mt-40 px-20 grid grid-cols-3 gap-4 absolute w-full">
-            {/* 1-karta: ikkita ustunni egallaydi */}
-            <div className="col-span-2 bg-slate-400 relative rounded-lg shadow-lg overflow-hidden">
-              <Image className="w-full h-56 object-cover" src={beansImg} alt="beans" />
-              {/* Pastki matn va gradient */}
-              <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-green-900 via-transparent to-transparent">
-                <p className="text-white text-lg font-bold px-4 pt-6">Зелёный мунг (маш)</p>
+
+          {/* Product Grid */}
+          <div className="mt-32 sm:mt-40 px-6 sm:px-10 md:px-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+            {/* Card 1: Takes 2 columns on larger screens */}
+            <div className="lg:col-span-2 bg-slate-400 relative rounded-lg shadow-lg overflow-hidden h-56 sm:h-64">
+              <Image className="w-full h-full object-cover" src={beansImg} alt="beans" />
+              <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-green-900 via-transparent to-transparent flex items-end justify-start">
+                <p className="text-white text-lg font-bold px-4 py-2">Зелёный мунг (маш)</p>
               </div>
             </div>
 
-            {/* 2-karta */}
-            <div className="bg-slate-600 relative rounded-lg shadow-lg overflow-hidden">
-              <Image className="w-full h-56 object-cover" src={beansImg} alt="beans" />
-              <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-green-900 via-transparent to-transparent">
-                <p className="text-white text-lg font-bold px-4 pt-6">Красный фасоль
-                </p>
+            {/* Card 2 */}
+            <div className="bg-slate-600 relative rounded-lg shadow-lg overflow-hidden h-56 sm:h-64">
+              <Image className="w-full h-full object-cover" src={beansImg} alt="beans" />
+              <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-green-900 via-transparent to-transparent flex items-end justify-start">
+                <p className="text-white text-lg font-bold px-4 py-2">Красный фасоль</p>
               </div>
             </div>
 
-            {/* 3-karta */}
-            <div className="bg-slate-400 relative rounded-lg shadow-lg overflow-hidden">
-              <Image className="w-full h-56 object-cover" src={beansImg} alt="beans" />
-              <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-green-900 via-transparent to-transparent">
-                <p className="text-white text-lg font-bold px-4 pt-6">Арахис</p>
+            {/* Card 3 */}
+            <div className="bg-slate-400 relative rounded-lg shadow-lg overflow-hidden h-56 sm:h-64">
+              <Image className="w-full h-full object-cover" src={beansImg} alt="beans" />
+              <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-green-900 via-transparent to-transparent flex items-end justify-start">
+                <p className="text-white text-lg font-bold px-4 py-2">Арахис</p>
               </div>
             </div>
 
-            {/* 4-karta: ikkita ustunni egallaydi */}
-            <div className="col-span-2 bg-slate-600 relative rounded-lg shadow-lg overflow-hidden">
-              <Image className="w-full h-56 object-cover" src={beansImg} alt="beans" />
-              <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-green-900 via-transparent to-transparent">
-                <p className="text-white text-lg font-bold px-4 pt-6">Нут</p>
+            {/* Card 4: Takes 2 columns on larger screens */}
+            <div className="lg:col-span-2 bg-slate-600 relative rounded-lg shadow-lg overflow-hidden h-56 sm:h-64">
+              <Image className="w-full h-full object-cover" src={beansImg} alt="beans" />
+              <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-green-900 via-transparent to-transparent flex items-end justify-start">
+                <p className="text-white text-lg font-bold px-4 py-2">Нут</p>
               </div>
             </div>
           </div>
+
         </div>
-        <div className="bg-white h-40 w-full">
-          <div className="flex mt-10 absolute w-full justify-center px-20">
-            <button className="bg-green-600 rounded-full text-2xl p-3 px-5">Больше продуктов</button>
-          </div>
-        </div>
 
+        {/* Button Section */}
+        <div className="bg-white h-40 w-full flex justify-center items-center">
+          <button className="bg-green-600 rounded-full text-lg sm:text-xl md:text-2xl p-3 px-5">
+            Больше продуктов
+          </button>
+        </div>
       </div>
+
+
       {/* Navigation Map */}
       <div>
-        <div className="h-screen  ">
-          <div className=" px-20 h-1/2 bg-white">
-            <div className=" ">
-              <p className="  mt-40 text-4xl text-green-900 font-bold">Наше местонахождения</p>
+        <div className="h-screen">
+          <div className="px-6 md:px-20 h-1/2 bg-white">
+            <div>
+              <p className=" text-3xl md:text-4xl text-green-900 font-bold text-center md:text-left">Наше местонахождение</p>
             </div>
-            <div className="w-full ">
+            <div className="w-full">
               <div className="mt-10 bg-white">
                 {/* map */}
                 <div>
@@ -194,47 +247,44 @@ export default function Home() {
                   ></iframe>
                 </div>
               </div>
-              {/* <MapContainer center={center} zoom={13} style={{ width: '100%', height: '500px' }}>
-                <TileLayer
-                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                />
-                <Marker position={center}>
-                  <Popup>
-                    A marker at this location.
-                  </Popup>
-                </Marker>
-              </MapContainer> */}
             </div>
           </div>
 
-          <div className="h-1/2 w-full  bg-green-400">
-          </div>
-          <div className="w-full px-20 pt-10 contact-card">
-            <h3 className="font-bold text-3xl">Контакты</h3>
-            <div className="text-xl">
-              <div className="flex mt-5 justify-between items-center">
-                <p className="flex gap-3">+998(95)-089-99-44 <BsTelephone size={22} /> <MessageCircle size={22} /></p>
-                <p className="flex gap-3"><Map size={22} /> Узбекистан, Наманганская область <br /></p>
+          <div className="h-1/2 w-full bg-green-400"></div>
+
+          <div className="w-full px-6 md:px-20 pt-10 contact-card">
+            <h3 className="font-bold text-2xl md:text-3xl">Контакты</h3>
+            <div className="text-lg md:text-xl">
+              <div className="flex flex-col md:flex-row mt-5 justify-between items-center">
+                <p className="flex gap-3 text-sm md:text-base">+998(95)-089-99-44 <BsTelephone size={22} /> <MessageCircle size={22} /></p>
+                <p className="flex gap-3 mt-3 md:mt-0 text-sm md:text-base"><Map size={22} /> Узбекистан, Наманганская область <br /></p>
               </div>
 
-              <div className="flex justify-between items-center">
-                <p className="flex gap-3">albois2000@mail.ru <MessageCircle size={22} /></p>
-                <p>  г. Чуст ул. Истиклол №21      <br /></p>
+              <div className="flex flex-col md:flex-row justify-between items-center">
+                <p className="flex gap-3 text-sm md:text-base">albois2000@mail.ru <MessageCircle size={22} /></p>
+                <p className="text-sm md:text-base">г. Чуст ул. Истиклол №21 <br /></p>
               </div>
             </div>
-            <h4 className="font-bold mt-5 text-3xl">Мы в социальных сетях</h4>
-            <div>
-
+            <h4 className="font-bold mt-5 text-2xl md:text-3xl">Мы в социальных сетях</h4>
+            <div className="flex justify-center md:justify-start py-5 gap-4 items-center">
+              <InstagramIcon size={26} /> <FaTelegram size={26} /> <MessageCircle size={26} /> <YoutubeIcon size={26} />
+              <p className="text-xl md:text-3xl">uzbeans</p>
             </div>
-            <div className="flex py-5 gap-4 items-center"><InstagramIcon size={26} /> <FaTelegram size={26} /> <MessageCircle size={26} /> <YoutubeIcon size={26} /> <p className="text-3xl">uzbeans</p></div>
           </div>
-          <div className="flex justify-between items-center px-20 bg-white">
-            <div className="w-40"><Image className="h-40" src={LogoNav} alt="logo" /></div>
-            <div className="text-black">Uzbeans agro company. Все права защищены.</div>
+
+
+          <div className="flex justify-between items-center px-6 md:px-20 bg-white py-4">
+            <div className="w-32 md:w-40">
+              <Image className="h-24 md:h-40" src={LogoNav} alt="logo" />
+            </div>
+            <div className="text-sm md:text-base text-black text-center md:text-left">
+              Uzbeans agro company. Все права защищены.
+            </div>
           </div>
 
         </div>
       </div>
+
       <div> </div>
       <div></div>
     </div >
