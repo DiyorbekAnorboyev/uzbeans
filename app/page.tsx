@@ -8,6 +8,7 @@ import * as React from "react"
 import { DropdownMenuCheckboxItemProps } from "@radix-ui/react-dropdown-menu"
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
+import './globals.css'
 
 import { Button } from "@/components/ui/button"
 import {
@@ -18,6 +19,9 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { IoMenu } from "react-icons/io5";
 import { IoMdDownload } from "react-icons/io";
+import { InstagramIcon, Map, MessageCircle, YoutubeIcon } from "lucide-react";
+import { FaTelegram } from "react-icons/fa";
+import { BsTelephone } from "react-icons/bs";
 
 
 
@@ -177,8 +181,20 @@ export default function Home() {
               <p className="  mt-40 text-4xl text-green-900 font-bold">Наше местонахождения</p>
             </div>
             <div className="w-full ">
-              <div className="mt-10 bg-white"></div>
-              <MapContainer center={center} zoom={13} style={{ width: '100%', height: '500px' }}>
+              <div className="mt-10 bg-white">
+                {/* map */}
+                <div>
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2994.6340048234164!2d69.207486715335!3d41.29949597927179!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38aef4af0b09c76d%3A0x4a5d7d8c4eb56185!2sTashkent%2C%20Uzbekistan!5e0!3m2!1sen!2sus!4v1675820676580!5m2!1sen!2sus"
+                    width="100%"
+                    height="500"
+                    style={{ border: 'none' }}
+                    allowFullScreen={true}
+                    loading="lazy"
+                  ></iframe>
+                </div>
+              </div>
+              {/* <MapContainer center={center} zoom={13} style={{ width: '100%', height: '500px' }}>
                 <TileLayer
                   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
@@ -187,13 +203,39 @@ export default function Home() {
                     A marker at this location.
                   </Popup>
                 </Marker>
-              </MapContainer>
+              </MapContainer> */}
             </div>
           </div>
-          <div className="h-1/2 bg-green-500"></div>
+
+          <div className="h-1/2 w-full  bg-green-400">
+          </div>
+          <div className="w-full px-20 pt-10 contact-card">
+            <h3 className="font-bold text-3xl">Контакты</h3>
+            <div className="text-xl">
+              <div className="flex mt-5 justify-between items-center">
+                <p className="flex gap-3">+998(95)-089-99-44 <BsTelephone size={22} /> <MessageCircle size={22} /></p>
+                <p className="flex gap-3"><Map size={22} /> Узбекистан, Наманганская область <br /></p>
+              </div>
+
+              <div className="flex justify-between items-center">
+                <p className="flex gap-3">albois2000@mail.ru <MessageCircle size={22} /></p>
+                <p>  г. Чуст ул. Истиклол №21      <br /></p>
+              </div>
+            </div>
+            <h4 className="font-bold mt-5 text-3xl">Мы в социальных сетях</h4>
+            <div>
+
+            </div>
+            <div className="flex py-5 gap-4 items-center"><InstagramIcon size={26} /> <FaTelegram size={26} /> <MessageCircle size={26} /> <YoutubeIcon size={26} /> <p className="text-3xl">uzbeans</p></div>
+          </div>
+          <div className="flex justify-between items-center px-20 bg-white">
+            <div className="w-40"><Image className="h-40" src={LogoNav} alt="logo" /></div>
+            <div className="text-black">Uzbeans agro company. Все права защищены.</div>
+          </div>
+
         </div>
       </div>
-      <div></div>
+      <div> </div>
       <div></div>
     </div >
   );
