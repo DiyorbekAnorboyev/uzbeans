@@ -21,7 +21,7 @@ body {
 }
 
 .main-bg {
-  background-image: url("../public/mosh.jpg");
+  background-image: url("../public/mosh.png");
   width: 100%;
   height: 100vh;
   background-position: center; /* Center the image */
