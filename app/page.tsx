@@ -2,9 +2,13 @@
 import Image from "next/image";
 import backgroundImg from "../public/mosh.jpg"
 import LogoNav from "../public/logoNAV.png"
-import traktorImg from "../public/traktor.png";
+import traktorImg from "../public/traktor.jpg";
 import beansImg from "../public/beansImg.png";
 import downloadIcon from "../public/downloadIcon.png";
+import noxot from "../public/noxot.jpg"
+import yangoq from "../public/yangoq.jpg"
+import mosh1 from "../public/mosh1.jpg"
+import lovia from "../public/lovia.png"
 import * as React from "react"
 import { DropdownMenuCheckboxItemProps } from "@radix-ui/react-dropdown-menu"
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
@@ -178,7 +182,7 @@ export default function Home() {
               </p>
             </div>
             <div className="mt-6 sm:mt-10">
-              <Image className="w-full" src={traktorImg} alt="Tractor" />
+              <Image className="w-full bg-cover h-screen" src={traktorImg} alt="Tractor" />
             </div>
           </div>
 
@@ -215,7 +219,7 @@ export default function Home() {
           <div className="mt-32 sm:mt-40 px-6 sm:px-10 md:px-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
             {/* Card 1: Takes 2 columns on larger screens */}
             <div className="lg:col-span-2 bg-slate-400 relative shadow-lg overflow-hidden h-56 sm:h-64">
-              <Image className="w-full h-full object-cover" src={beansImg} alt="beans" />
+              <Image className="w-full h-full object-cover" src={mosh1} alt="beans" />
               <div className="absolute bottom-0 left-0 w-full h-52 bg-gradient-to-t from-green-900 via-transparent to-transparent flex items-end justify-start">
                 <p className="text-white text-lg font-bold px-4 py-2">Зелёный мунг (маш)</p>
               </div>
@@ -223,7 +227,7 @@ export default function Home() {
 
             {/* Card 2 */}
             <div className="bg-slate-600 relative shadow-lg overflow-hidden h-56 sm:h-64">
-              <Image className="w-full h-full object-cover" src={beansImg} alt="beans" />
+              <Image className="w-full h-full object-cover" src={lovia} alt="beans" />
               <div className="absolute bottom-0 left-0 w-full h-52 bg-gradient-to-t from-green-900 via-transparent to-transparent flex items-end justify-start">
                 <p className="text-white text-lg font-bold px-4 py-2">Красный фасоль</p>
               </div>
@@ -231,7 +235,7 @@ export default function Home() {
 
             {/* Card 3 */}
             <div className="bg-slate-400 relative shadow-lg overflow-hidden h-56 sm:h-64">
-              <Image className="w-full h-full object-cover" src={beansImg} alt="beans" />
+              <Image className="w-full h-full object-cover" src={yangoq} alt="beans" />
               <div className="absolute bottom-0 left-0 w-full h-52 bg-gradient-to-t from-green-900 via-transparent to-transparent flex items-end justify-start">
                 <p className="text-white text-lg font-bold px-4 py-2">Арахис</p>
               </div>
@@ -239,7 +243,7 @@ export default function Home() {
 
             {/* Card 4: Takes 2 columns on larger screens */}
             <div className="lg:col-span-2 bg-slate-600 relative shadow-lg overflow-hidden h-56 sm:h-64">
-              <Image className="w-full h-full object-cover" src={beansImg} alt="beans" />
+              <Image className="w-full h-full object-cover" src={noxot} alt="beans" />
               <div className="absolute bottom-0 left-0 w-full h-52 bg-gradient-to-t from-green-900 via-transparent to-transparent flex items-end justify-start">
                 <p className="text-white text-lg font-bold px-4 py-2">Нут</p>
               </div>
