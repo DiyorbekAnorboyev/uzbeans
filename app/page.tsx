@@ -1,7 +1,7 @@
 "use client"
 import Image from "next/image";
 import backgroundImg from "../public/mosh.jpg"
-import LogoNav from "../public/logoNAV.png"
+import LogoNav from "../public/logoLast.png"
 import traktorImg from "../public/traktor.jpg";
 import beansImg from "../public/beansImg.png";
 import downloadIcon from "../public/downloadIcon.png";
@@ -16,7 +16,7 @@ import 'leaflet/dist/leaflet.css';
 import './globals.css'
 // import Carousel from 'react-bootstrap/Carousel';
 
-import caMosh from "../public/mosh1.jpg"
+import caMosh from "../public/mosh.png"
 import caLovia from "../public/slaydLovia.png"
 import caYongoq from "../public/slaydYongoq.png"
 import caNoxot from "../public/slaydNoxot.png"
@@ -91,7 +91,7 @@ export default function Home() {
     <div className="">
       <div className="fixed bottom-10 right-8 z-10">
         <div onClick={() => toTop()} className="p-2 bg-green-900 bg-opacity-50 rounded-full">
-          <GoMoveToTop className="h-14 w-14 hover:cursor-pointer max-sm:h-10 max-sm:w-10" />
+          <GoMoveToTop className="h-12 w-12 hover:cursor-pointer max-sm:h-10 max-sm:w-10" />
         </div>
       </div>
       {/* main */}
@@ -138,11 +138,11 @@ export default function Home() {
           {/* Foreground Content */}
           <div className="relative flex flex-col justify-between h-screen pb-10 z-10">
             {/* Navigation */}
-            <div className="flex w-full items-center justify-between px-6 sm:px-12 lg:px-24 text-white">
+            <div className="flex w-full items-center pt-3 justify-between px-6 sm:px-12 lg:px-24 text-white">
               <div className="flex-shrink-0">
                 <Image
                   onClick={() => toTop()}
-                  className="w-auto h-24 sm:h-36 hover:cursor-pointer"
+                  className="w-auto h-10 sm:h-16 hover:cursor-pointer"
                   src={LogoNav}
                   alt="Logo"
                 />
@@ -263,7 +263,7 @@ export default function Home() {
       </div>
 
       {/* Products */}
-      <div className="bg-white min-h-screen pb-20">
+      <div className="bg_products">
         <div className="relative min-h-screen">
           {/* Title */}
           <div>
@@ -365,9 +365,9 @@ export default function Home() {
           </div>
 
 
-          <div className="flex justify-between items-center px-6 md:px-20 bg-white py-4">
+          <div className="flex justify-between items-center px-8 md:px-20 bg-white py-4">
             <div className="w-32 md:w-40">
-              <Image onClick={() => toTop()} className="h-24 hover:cursor-pointer w-auto md:h-40" src={LogoNav} alt="logo" />
+              <Image onClick={() => toTop()} className="h-10 hover:cursor-pointer w-auto md:h-16" src={LogoNav} alt="logo" />
             </div>
             <div className="text-sm md:text-base text-black text-center md:text-left">
               {t('txt_footer')}

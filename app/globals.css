@@ -21,7 +21,7 @@ body {
 }
 
 .main-bg {
-  background-image: url("../public/mosh.png");
+  background-image: url('../public/mosh.png');
   width: 100%;
   height: 100vh;
   background-position: center; /* Center the image */
@@ -30,12 +30,21 @@ body {
 }
 
 .about-bg {
-  /* background-image: url("../public/beans.jpg"); */
-  background-color:rgb(100, 206, 96);
+  background-image: url('../public/bg-green.png');
+  /* background-color:rgb(100, 206, 96); */
   height: 100%;
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover;
+}
+
+.bg_products {
+  background-image: url('../public/bg-white.png');
+  height: 100%;
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+  padding-bottom: 80px;
 }
 
 .card {
@@ -110,7 +119,6 @@ body {
   color: white;
   background-color: rgb(7, 82, 7); /* Example background */
   font-family: Arial, sans-serif;
-
 }
 
 .contact-card p {
