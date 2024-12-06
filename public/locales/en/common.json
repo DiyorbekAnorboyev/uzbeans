@@ -27,5 +27,13 @@
     "loc_second": "Chust city, Istiklol St. No.21",
     "txt_sotvi": "We are on social media",
     "txt_footer": "Uzbeans agro company. All rights reserved.",
-    "title": "Uzbeans agricultural company"
+    "title": "Uzbeans agricultural company",
+    "txt_pro":"CATALOGUE OF OUR PRODUCTS",
+    "txt_mung":"MUNG BEANS FROM UZBEKISTAN",
+    "size":"Size",
+    "purity":"Purity",
+    "moisture":"Moisture",
+    "package":"Package",
+    "admixtures":"Admixtures",
+    "imperfect":"Imperfect"
 }
